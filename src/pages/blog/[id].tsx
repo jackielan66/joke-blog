@@ -72,7 +72,22 @@ export default function BlogIdPage({
 ) {
 
     useEffect(() => {
-        console.log("repo", repo)
+        // console.log("repo", repo)
+        document.querySelectorAll(".article-body img").forEach(imgElement => {
+            // console.log("imgElement", imgElement)
+            const intersectionObserver = new IntersectionObserver((entry) => {
+                if (entry[0].isIntersecting) {
+                    // console.log("entry[0].target", entry[0].target)
+                    // @ts-ignore
+                    let src = entry[0].target.dataset.src
+                    if (src) {
+                        entry[0].target.setAttribute('src', src)
+                    }
+                    intersectionObserver.disconnect()
+                }
+            })
+            intersectionObserver.observe(imgElement)
+        })
     }, [])
     return (
         <>
@@ -80,25 +95,6 @@ export default function BlogIdPage({
             <main className="flex min-h-screen flex-col items-center justify-between">
                 <div dangerouslySetInnerHTML={{ __html: repo.content }} />
             </main>
-            <Script id="lazyload-script" strategy="afterInteractive">
-                {
-                    `
-                    document.querySelectorAll(".article-body img").forEach(imgElement => {
-                        // console.log("imgElement", imgElement)
-                        const intersectionObserver = new IntersectionObserver((entry) => {
-                            if (entry[0].isIntersecting) {
-                                // console.log("entry", entry)
-                                if (entry[0].target.dataset.src) {
-                                    entry[0].target.setAttribute('src', entry[0].target.dataset.src)
-                                }
-                                intersectionObserver.disconnect()
-                            }
-                        })
-                        intersectionObserver.observe(imgElement)
-                    })
-                    `
-                }
-            </Script>
         </>
 
     );

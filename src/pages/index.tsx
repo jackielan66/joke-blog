@@ -1,8 +1,8 @@
 import Image from "next/image";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Box, Typography } from "@mui/material";
-import { neteaseUrlList } from '../config'
 import Link from "next/link";
+import { saveNews, getNews } from '../scratch/ease-news'
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -14,17 +14,10 @@ const geistMono = Geist_Mono({
 });
 
 export async function getStaticProps() {
-  let url = neteaseUrlList[0].url;
-  const res = await fetch(url)
-  const text = await res.text()
-
-  const match = text.match(/^artiList\((.*)\)$/)
-  const jsonStr = match?.[1] || '{}'
-  const data = JSON.parse(jsonStr)
-  const articles = data['BD21K0DLwangning'] || []
-
+  await saveNews()
+  let newsList = await getNews()
   return {
-    props: { articles },
+    props: { articles:newsList },
     revalidate: 60 * 60 * 24, // 每 60 秒重新生成一次页面（ISR）
   }
 }
