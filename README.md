@@ -2,6 +2,17 @@
 This is a blog project use [Next.js](https://nextjs.org) + [Vercel](https://vercel.com) + [upstash/redis](https://github.com/upstash/redis)
 
 
+## jest
+jest 有哪些测试配置，主配置跟每次都会启动的配置
+测试的这几个库是干嘛的
+yarn add -D jest 
+ jest-environment-jsdom
+ @testing-library/react
+ @testing-library/dom
+ @testing-library/jest-dom
+ ts-node @types/jest
+
+    
 
 ## Getting Started
 
