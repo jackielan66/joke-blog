@@ -3,6 +3,10 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { Box, Typography } from "@mui/material";
 import Link from "next/link";
 import { saveNews, getNews } from '../scratch/ease-news'
+import { EaseNews } from "@/model/easenet"
+import { Suspense } from 'react'
+import HomeArticleList from "@/components/homeArticleList/homeArticleList";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -17,12 +21,13 @@ export async function getStaticProps() {
   await saveNews()
   let newsList = await getNews()
   return {
-    props: { articles:newsList },
-    revalidate: 60 * 60 * 24, // 每 60 秒重新生成一次页面（ISR）
+    props: { articles: newsList },
+    revalidate: 2
+    // revalidate: 60 * 60 * 24, // 每 60 秒重新生成一次页面（ISR）
   }
 }
 
-export default function Home({ articles }: { articles: any[] }) {
+export default function Home({ articles }: { articles: EaseNews[] }) {
 
   return (
     <div
@@ -35,16 +40,20 @@ export default function Home({ articles }: { articles: any[] }) {
             <Typography variant="h3" >
               网易新闻
             </Typography>
-            {articles.map((article, index) => (
-              <div key={index} className="py-2" >
-                <Link href={`/blog/${article.docid}`} rel="noopener noreferrer">
-                  <h2>{article.title}</h2>
-                  <time>{article.ptime}</time>
-                  <p>{article.digest}</p>
-                  <Image alt={article.title} src={article.imgsrc} width={130} height={10} />
-                </Link>
-              </div>
-            ))}
+            <Suspense fallback={<p>Loading</p>}>
+              <HomeArticleList />
+            </Suspense>
+            {/* {articles.map((article, index) => (
+                <div key={index} className="py-2" >
+                  <Link href={`/blog/${article.docid}`} rel="noopener noreferrer">
+                    <h2>{article.title}</h2>
+                    <time>{article.ptime}</time>
+                    <p>{article.digest}</p>
+                    <Image alt={article.title} src={article.imgsrc} width={130} height={10} />
+                  </Link>
+                </div>
+              ))} */}
+
           </div>
         </Box>
         <Image

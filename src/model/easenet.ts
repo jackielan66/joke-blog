@@ -11,7 +11,7 @@ export interface EaseNews {
     stitle:       string;
     digest:       string;
     imgsrc:       string;
-    ptime:        Date;
+    ptime:        string;
 }
 
 // Converts JSON strings to/from your types

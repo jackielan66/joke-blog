@@ -14,6 +14,6 @@ export async function addItemToKv(key: string, item: any) {
 }
 
 export async function getListItemsFromKv(key: string, limit = 10) {
-    const rawItems = await redis.lrange(key, -10,-1)
+    const rawItems = await redis.lrange(key, -limit,-1)
     return rawItems;
 }

@@ -31,7 +31,7 @@ export async function saveNews() {
 }
 
 
-export async function getNews() {
-  return getListItemsFromKv(SAVE_KEY)
+export async function getNews(page=0,size=50) {
+  return getListItemsFromKv(SAVE_KEY,(page+1)*size) as unknown as EaseNews[]
 }
 
