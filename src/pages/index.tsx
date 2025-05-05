@@ -33,7 +33,7 @@ export default function Home({ articles }: { articles: EaseNews[] }) {
     <div
       className={`${geistSans.className} ${geistMono.className} font-[family-name:var(--font-geist-sans)]`}
     >
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
+      <main>
         <Suspense fallback={<p>Loading</p>}>
           <HomeArticleList articles={articles} />
         </Suspense>
