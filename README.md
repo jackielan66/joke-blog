@@ -12,7 +12,11 @@ yarn add -D jest
  @testing-library/jest-dom
  ts-node @types/jest
 
-    
+## 流式渲染的特点
+
+支持 Suspense 的框架如 Relay 和 Next.js。
+使用 lazy 懒加载组件代码。
+使用 use 读取缓存的 Promise 值。
 
 ## Getting Started
 

@@ -5,7 +5,16 @@ import { addItemToKv, getListItemsFromKv } from "@/utils/kvStorage";
 import { EaseNews } from "@/model/easenet";
 const SAVE_KEY = "ease-news"
 
-
+export async function getTemp() {
+  let url = neteaseUrlList[0].url;
+  const res = await fetch(url)
+  const text = await res.text()
+  // 去掉 JSONP 回调函数（因为它不是标准 JSON）
+  const jsonStr = text.replace(/^artiList\(/, '').replace(/\)$/, '')
+  const json = JSON.parse(jsonStr)
+  const articles = json.BD21K0DLwangning || [];
+  return articles;
+}
 
 export async function saveNews() {
   let url = neteaseUrlList[0].url;
