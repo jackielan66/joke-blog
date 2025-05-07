@@ -18,8 +18,7 @@ const HomeArticleList = ({
                 >
                     <div className="w-full md:w-1/4 h-40 relative">
                         <Image src={article.imgsrc} alt={article.title}
-                            layout="fill"
-                            objectFit="cover"
+                            fill={true}
                             className="rounded-md"
                         />
                     </div>

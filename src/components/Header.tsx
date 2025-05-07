@@ -1,37 +1,8 @@
 import Link from "next/link"
-import { useState,useEffect } from "react"
-
+import { useState, useEffect, useLayoutEffect } from "react"
+import { useTheme } from "@/utils/theme";
 export default function Header() {
-    const [darkMode, setDarkMode] = useState(false)
-    const [isDark, setIsDark] = useState(false);
-
-    useEffect(() => {
-        const currentTheme = localStorage.getItem('theme');
-        if (currentTheme === 'dark') {
-            document.body.classList.add('dark');
-            // document.documentElement.classList.add('dark');
-
-            setIsDark(true);
-        } else {
-            document.body.classList.remove('dark');
-            // document.documentElement.classList.remove('dark');
-            setIsDark(false);
-        }
-    }, []);
-
-    const toggleTheme = () => {
-        if (isDark) {
-            document.body.classList.remove('dark');
-            // document.documentElement.classList.remove('dark');
-
-            localStorage.setItem('theme', 'light');
-        } else {
-            document.body.classList.add('dark');
-            // document.documentElement.classList.add('dark');
-            localStorage.setItem('theme', 'dark');
-        }
-        setIsDark(!isDark);
-    };
+    const { isDark, toggleTheme, isMounted } = useTheme();
 
     const menuList = [
         {
@@ -67,12 +38,18 @@ export default function Header() {
                 </nav>
 
                 {/* 主题切换按钮 */}
-                <button
-                    onClick={toggleTheme}
-                    className="ml-4 p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white focus:outline-none"
-                >
-                    {isDark ? '☀️' : '🌙'}
-                </button>
+                {
+                    isMounted && <button
+                        onClick={toggleTheme}
+                        className="ml-4 p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white focus:outline-none"
+                    >
+                        {
+                            isDark ? '☀️' : '🌙'
+                        }
+
+                    </button>
+                }
+
             </div>
         </header>
     )
