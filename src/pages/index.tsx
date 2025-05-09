@@ -22,7 +22,6 @@ export async function getStaticProps() {
   let newsList = await getTemp()
   return {
     props: { articles: newsList },
-    // revalidate: 1
     revalidate: 60 * 60 * 24, // 每 24 小时 重新生成一次页面（ISR）
   }
 }

@@ -20,6 +20,7 @@ const HomeArticleList = ({
                         <Image src={article.imgsrc} alt={article.title}
                             fill={true}
                             className="rounded-md"
+                            loading="lazy"
                         />
                     </div>
                     <div className="flex flex-col justify-between w-full md:w-3/4">
