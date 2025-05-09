@@ -32,8 +32,50 @@ pnpm dev
 bun dev
 ```
 
-## 
+## how to use prisma-postgres
+[How to use Prisma ORM with Next.js](https://www.prisma.io/docs/guides/nextjs)
 
-## storage prisma-postgres-teal-island
-[https://www.prisma.io/docs/guides/nextjs](https://www.prisma.io/docs/guides/nextjs)
+1. install prisma and tsx
+```
+npm install prisma tsx --save-dev
+npm install @prisma/client @prisma/extension-accelerate
+```
+
+2. Then, run prisma init to initialize Prisma ORM in your project.
+
+```
+npx prisma init --db --output ../src/generated/prisma
+```
+
+3. Update your database schema
+```
+npx prisma migrate dev --name init
+```
+
+4. Set up Prisma Client
+```
+mkdir -p lib && touch lib/prisma.ts
+```
+lib/prisma.ts
+```
+import { PrismaClient } from '../src/generated/prisma'
+import { withAccelerate } from '@prisma/extension-accelerate'
+
+const globalForPrisma = global as unknown as { 
+    prisma: PrismaClient
+}
+
+const prisma = globalForPrisma.prisma || new PrismaClient().$extends(withAccelerate())
+
+if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma
+
+export default prisma
+```
+
+5. open prisma studio
+```
+npx prisma studio
+```
+
+
 
