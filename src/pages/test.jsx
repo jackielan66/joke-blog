@@ -15,7 +15,7 @@ export async function getServerSideProps() {
   }
 
   const users = await prisma.user.findMany();
-  console.log(users,"users");
+  console.log(users,"users 12");
   return { props: { users } };
 }
 
