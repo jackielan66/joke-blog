@@ -1,6 +1,7 @@
 import { EaseNews } from "@/model/easenet"
 import Image from "next/image"
 import Link from "next/link"
+import { useEffect } from "react"
 
 const HomeArticleList = ({
     articles
@@ -10,6 +11,22 @@ const HomeArticleList = ({
 
     // const articles = use(fetchData()) as EaseNews[];
 
+    useEffect(() => {
+        document.querySelectorAll("img").forEach(imgElement => {
+            const intersectionObserver = new IntersectionObserver((entry) => {
+                if (entry[0].isIntersecting) {
+                    // @ts-ignore
+                    let src = entry[0].target.dataset.src
+                    if (src) {
+                        entry[0].target.setAttribute('src', src)
+                    }
+                    intersectionObserver.disconnect()
+                }
+            })
+            intersectionObserver.observe(imgElement)
+        })
+    }, [])
+
     return (
         <div className="space-y-4 p-4">
             {articles.map((article, index) => (
@@ -17,10 +34,8 @@ const HomeArticleList = ({
                     className="flex flex-col md:flex-row items-center gap-4 p-4 rounded-lg shadow-md hover:cursor-pointer transition duration-300 ease-in-out bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700"
                 >
                     <div className="w-full md:w-1/4 h-40 relative">
-                        <Image src={article.imgsrc} alt={article.title}
-                            fill={true}
+                        <img data-src={article.imgsrc} alt={article.title}
                             className="rounded-md"
-                            loading="lazy"
                         />
                     </div>
                     <div className="flex flex-col justify-between w-full md:w-3/4">

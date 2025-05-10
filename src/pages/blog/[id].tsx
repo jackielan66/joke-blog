@@ -9,27 +9,6 @@ type Repo = {
     content: string
 }
 
-// export const getServerSideProps = (async ({
-//     params
-// }: {
-//     params: { id: string }
-// }) => {
-
-//     let url = `https://m.163.com/news/article/${params.id}.html`
-
-//     const {
-//         content,
-//         title
-//     } = await scratchContent(url);
-
-
-//     const repo: Repo = {
-//         title,
-//         content
-//     }
-//     return { props: { repo } }
-// })
-
 // // 预生成所有博客文章页面的路径 告诉 Next.js 要静态生成哪些路径
 export async function getStaticPaths() {
     // const res = await fetch('https://api.example.com/posts');
@@ -89,6 +68,7 @@ export default function BlogIdPage({
     return (
         <>
             <Head>{repo.title}</Head>
+            
             <main className="p-2 flex min-h-screen flex-col items-center justify-between">
                 <div dangerouslySetInnerHTML={{ __html: repo.content }} />
             </main>
