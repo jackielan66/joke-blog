@@ -13,15 +13,6 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  "builds": [
-    {
-      "src": "package.json",
-      "use": "@vercel/node",
-      "config": {
-        "buildCommand": "prisma generate && next build"
-      }
-    }
-  ],
   async headers() {
     return [
       {
