@@ -180,7 +180,7 @@ export async function getStaticPaths() {
     return {
         paths, // 预生成这些页面
         // fallback: false, // 对于未预生成的页面返回 404
-        fallback: "true", // 或 true（推荐 blocking）
+        fallback: true, // 或 true（推荐 blocking）
     };
 }
 
