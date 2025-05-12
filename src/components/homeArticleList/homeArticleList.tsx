@@ -35,7 +35,7 @@ const HomeArticleList = ({
                 >
                     <div className="w-full md:w-1/4 h-40 relative">
                         <img data-src={article.imgsrc} alt={article.title}
-                            className="rounded-md"
+                            className="rounded-md w-full h-full object-cover"
                         />
                     </div>
                     <div className="flex flex-col justify-between w-full md:w-3/4">
