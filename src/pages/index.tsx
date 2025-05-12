@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Geist, Geist_Mono } from "next/font/google";
 import Link from "next/link";
-import { saveNews, getNews, getTemp } from '../scratch/ease-news'
+import { getTemp } from '../scratch/ease-news'
 import { EaseNews } from "@/model/easenet"
 import { Suspense } from 'react'
 import HomeArticleList from "@/components/homeArticleList/homeArticleList";

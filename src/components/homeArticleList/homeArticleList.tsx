@@ -31,6 +31,7 @@ const HomeArticleList = ({
         <div className="space-y-4 p-4">
             {articles.map((article, index) => (
                 <Link href={`/blog/${article.docid}`} key={index}
+                    prefetch={false}
                     className="flex flex-col md:flex-row items-center gap-4 p-4 rounded-lg shadow-md hover:cursor-pointer transition duration-300 ease-in-out bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700"
                 >
                     <div className="w-full md:w-1/4 h-40 relative">
