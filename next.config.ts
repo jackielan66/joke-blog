@@ -11,6 +11,12 @@ const nextConfig: NextConfig = {
         port: '',
         pathname: '/**',
       },
+       {
+        protocol: 'https',
+        hostname: 'smms.app',
+        port: '',
+        pathname: '/**',
+      },
     ],
   },
   async headers() {

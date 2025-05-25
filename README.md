@@ -2,6 +2,10 @@
 This is a blog project use [Next.js](https://nextjs.org) + [Vercel](https://vercel.com) + [upstash/redis](https://github.com/upstash/redis)
 
 
+## 获取文件，如果有侵权请联系我删除
+1. [https://m.163.com/touch/reconstruct/article/list/BD21K0DLwangning/0-10.html](https://m.163.com/touch/reconstruct/article/list/BD21K0DLwangning/0-10.html)
+2. [https://www.bohaishibei.com/post/99951/](https://www.bohaishibei.com/post/99951/)
+
 ## jest
 jest 有哪些测试配置，主配置跟每次都会启动的配置
 测试的这几个库是干嘛的
