@@ -3,14 +3,14 @@
 1. 使用apache配置来转发域名
 ```
 <VirtualHost *:80>
-    ServerName biaoqing001.com
-    Redirect permanent / http://www.biaoqing001.com/
+    ServerName relaxnow.life
+    Redirect permanent / http://www.relaxnow.life/
 </VirtualHost>
 
 <VirtualHost *:80>
-    # 主配置：www.biaoqing001.com 反向代理到目标地址
-    ServerName www.biaoqing001.com
-    ServerAlias biaoqing001.com  # 备用域名（会被下面的重定向覆盖）
+    # 主配置：www.relaxnow.life 反向代理到目标地址
+    ServerName www.relaxnow.life
+    ServerAlias relaxnow.life  # 备用域名（会被下面的重定向覆盖）
 
     # 反向代理配置
     ProxyPass / https://my-joke-blog-73vn.vercel.app/
@@ -27,17 +27,17 @@
 Todo 部署https证书
 ```
 <VirtualHost *:443> 
- ServerName www.biaoqing001.com
+ ServerName www.relaxnow.life
 
  # 修改为申请证书时绑定的域名。 
 
- SSLCertificateFile /root/ssl/www.biaoqing001.com_public.crt 
+ SSLCertificateFile /root/ssl/www.relaxnow.life_public.crt 
  # 将domain_name_public.crt替换成您证书文件名。
- SSLCertificateKeyFile /root/ssl/www.biaoqing001.com.key
+ SSLCertificateKeyFile /root/ssl/www.relaxnow.life.key
   
 # 将domain_name.key替换成您证书的密钥文件名。
 
- SSLCertificateChainFile /root/ssl/www.biaoqing001.com_chain.crt 
+ SSLCertificateChainFile /root/ssl/www.relaxnow.life_chain.crt 
   # 将domain_name_chain.crt替换成您证书的证书链文件名。
  
  #自定义设置使用的TLS协议的类型以及加密套件（以下为配置示例，请您自行评估是否需要配置）
