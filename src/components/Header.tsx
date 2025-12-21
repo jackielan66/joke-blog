@@ -8,6 +8,10 @@ export default function Header() {
         {
             title: 'Home',
             link: '/'
+        },
+        {
+            title: '博海拾贝',
+            link: '/bohaishibei/list'
         }
     ]
 
