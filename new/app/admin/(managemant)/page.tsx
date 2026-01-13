@@ -1,27 +1,42 @@
+import { cookies } from 'next/headers'
 import { createClient } from "@/utils/supabase/server";
-import Link from "next/link";
+
 
 export default async function Admin() {
-  const supabase = await createClient();
+    const supabase = await createClient()
+    const { data } = await supabase.from('posts').select('*')
 
-  const { data: posts } = await supabase
-    .from("posts")
-    .select("*")
-    .order("created_at", { ascending: false });
+    return <div className="min-h-screen bg-gray-50 p-10">
+  <div className="max-w-4xl mx-auto bg-white rounded-xl shadow">
+    <div className="flex justify-between items-center p-6 border-b">
+      <h1 className="text-xl font-semibold">Blog CMS</h1>
+      <a
+        href="/admin/new"
+        className="px-4 py-2 bg-black text-white rounded-lg text-sm hover:bg-gray-800"
+      >
+        + New Post
+      </a>
+    </div>
 
-  return (
-    <div className="max-w-3xl mx-auto p-6">
-      <Link href="/admin/new">➕ New Post</Link>
+    <div className="divide-y">
+      {data?.map(post => (
+        <div key={post.id} className="flex justify-between p-4 hover:bg-gray-50">
+          <a
+            href={`/admin/edit/${post.slug}`}
+            className="font-medium text-gray-800 hover:underline"
+          >
+            {post.title}
+          </a>
 
-      {posts?.map((p) => (
-        <div key={p.id} className="border-b py-3 flex justify-between">
-          <Link href={`/admin/edit/${p.slug}`}>{p.title}</Link>
-
-          <form action={`/admin/delete/${p.id}`} method="post">
-            <button className="text-red-500">Delete</button>
+          <form action={`/admin/delete/${post.id}`} method="post">
+            <button className="text-sm text-red-500 hover:text-red-700">
+              Delete
+            </button>
           </form>
         </div>
       ))}
     </div>
-  );
+  </div>
+</div>
+
 }
