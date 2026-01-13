@@ -7,7 +7,7 @@ export default async function PostDetail({ params }:  { params: { slug: string }
     
     const supabase = await createClient()
 
-    console.log(params.slug,"sfdsf")
+    // console.log(params.slug,"sfdsf")
     const { data: post } = await supabase
         .from('posts')
         .select('*')
