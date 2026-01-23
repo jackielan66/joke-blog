@@ -27,6 +27,9 @@ export default async function Admin() {
           >
             {post.title}
           </a>
+          <time>
+            {new Date(post.created_at).toDateString()}
+          </time>
 
           <form action={`/admin/delete/${post.id}`} method="post">
             <button className="text-sm text-red-500 hover:text-red-700">

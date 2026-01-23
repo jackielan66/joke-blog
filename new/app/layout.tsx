@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import {Header, Footer }from '@/components/index'
+
 import "./globals.css";
 
 const geistSans = Geist({
@@ -27,11 +29,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-                <header>我是全局导航栏，切换页面的rootlayout状态不会变， 记住：根布局不随页面切换而重建，外壳稳定，体验更稳。</header>
-
+        <Header />
         {children}
-                <footer>我是全局页脚</footer>
-
+       <Footer />
       </body>
     </html>
   );
