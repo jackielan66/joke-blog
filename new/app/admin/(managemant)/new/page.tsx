@@ -1,5 +1,5 @@
 'use client'
-import { createPost ,State} from '@/app/admin/(managemant)/actions/blogs-server-action'
+import { createPost ,State,sayHello} from '@/app/admin/(managemant)/actions/blogs-server-action'
 import { useActionState } from 'react'
 export default function NewPost() {
 
@@ -13,6 +13,11 @@ export default function NewPost() {
   // state: 最新状态, action: 提交动作, isPending: 加载状态
   const [state, action, isPending] = useActionState(createPost,initialState);
 
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+   const res =await  sayHello('jackie')
+   console.log(res,"server 返回结果")
+  }
 
   return (
     <form
