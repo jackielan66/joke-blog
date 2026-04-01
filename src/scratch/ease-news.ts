@@ -2,7 +2,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { neteaseUrlList } from "../config";
 // import { addItemToKv, getListItemsFromKv } from "@/utils/kvStorage";
-import { EaseNews } from "@/model/easenet";
 const SAVE_KEY = "ease-news"
 
 export async function getTemp() {
